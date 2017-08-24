@@ -40,7 +40,13 @@ public class CustomerTest{
          Customer.clear();
          assertEquals(Customer.all().size(), 0);
        }
-       
+       //This Test will be used to assign ids to the individual Customer
+       @Test
+       public void getId_customersInstantiateWithAnID_1() {
+         Customer.clear();  // Remember, the test will fail without this line! We need to empty leftover Tasks from previous tests!
+         Customer myCustomer = new Customer("Grace");
+         assertEquals(1, myCustomer.getId());
+       }
     
     @After
     //This method Clears down the database tables

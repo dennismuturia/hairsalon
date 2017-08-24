@@ -33,13 +33,6 @@ public class CustomerTest{
          assertEquals(true, Customer.all().contains(myCustomer2));
        }
 
-       //Now this will be used to clear our list which is the customers
-       @Test
-       public void clear_emptiesAllCustomersFromArrayList_0() {
-         Customer myCustomer = new Customer("Customer");
-         Customer.clear();
-         assertEquals(Customer.all().size(), 0);
-       }
        //This Test will be used to assign ids to the individual Customer
        @Test
        public void getId_customersInstantiateWithAnID_1() {

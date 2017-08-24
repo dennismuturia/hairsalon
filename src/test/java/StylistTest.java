@@ -40,6 +40,45 @@ public class StylistTest {
     Stylist.clear();
     assertEquals(Stylist.all().size(), 0);
   }
+    //This Test will be used to assign ids to the individual stylist
+    @Test
+    public void getId_StylistInstantiateWithAnId_1() {
+        Stylist.clear();
+        Stylist myStylist = new Stylist("Daisy");
+        assertEquals(1, myStylist.getId());
+    }
+    //Make it locate a specific stylist with an ID
+    @Test
+    public void findASpecificStlistSecondStylist(){
+        Stylist.clear();
+        Stylist myStylist1 = new Stylist("Daisy");
+        Stylist myStylist2 = new Stylist("Carol");
+        assertEquals(Stylist.find(myStylist2.getId()), myStylist2);
+    }
+    //This finds the specific stylist using the id
+    @Test
+    public void find_returnsStylistWithSameId_secondStylist() {
+      Stylist.clear();
+      Stylist myStylist1 = new Stylist("Daisy");
+      Stylist myStylist2 = new Stylist("Carol");
+      assertEquals(Stylist.find(myStylist2.getId()), myStylist2);
+    }
+    //Lets connect the Stylists to the customers
+    @Test
+    public void getCustomers_initiallyReturnsEmptyList_ArrayList() {
+      Stylist.clear();
+      Stylist myStylist = new Stylist("Dennis");
+      assertEquals(0, myStylist.getCustomers().size());
+    }
+
+    //Add customer to Stylist
+    @Test
+    public void addCustomer_addsCustomerToList_true() {
+      Stylist myStylist = new Stylist("Daisy");
+      Customer myCustomer = new Customer("Grace");
+      myStylist.addCustomers(myCustomer);
+      assertTrue(myStylist.getCustomers().contains(myCustomer));
+    }
 
   @After
   //This method Clears down the database tables

@@ -24,6 +24,15 @@ public class StylistTest {
     assertEquals("Daisy", myStylist.getName());
   }
 
+  //So that they might be able to select any Stylist to fix the hair
+  @Test
+  public void all_returnsAllInstancesOfStylist_true() {
+    Stylist myStylist1 = new Stylist("Daisy");
+    Stylist myStylist2 = new Stylist("Carol");
+    assertEquals(true, Stylist.all().contains(myStylist1));
+    assertEquals(true, Stylist.all().contains(myStylist2));
+  }
+
   @After
   //This method Clears down the database tables
   public void tearDown() {

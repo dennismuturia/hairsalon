@@ -12,6 +12,7 @@ public class CustomerTest{
     @After
     //This method Clears down the database tables
     public void tearDown() {
+        //Here we run the try exemption to try and connect to the database 
       try(Connection con = DB.sql2o.open()) {
         String sql = "DELETE FROM customers *;";
         con.createQuery(sql).executeUpdate();

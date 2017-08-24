@@ -23,6 +23,7 @@ public class CustomerTest{
         Customer myCustomer = new Customer("Grace");
         assertEquals("Grace", myCustomer.getName());
     }
+
     
     @After
     //This method Clears down the database tables
@@ -32,6 +33,14 @@ public class CustomerTest{
         String sql = "DELETE FROM customers *;";
         con.createQuery(sql).executeUpdate();
       }
+    }
+
+    @Test
+    public void all_returnsAllInstancesOfCustomers_true() {
+      Customer myCustomer1 = new CUstomer("Grace");
+      Customer myCustomer2 = new CUstomer("Njoroge");
+      assertEquals(true, Customer.all().contains(myCustomer1));
+      assertEquals(true, Customer.all().contains(myCustomer2));
     }
 
 }

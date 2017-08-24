@@ -24,6 +24,16 @@ public class CustomerTest{
         assertEquals("Grace", myCustomer.getName());
     }
 
+       //This test checks whether all the instances of the Customer class passes
+       @Test
+       public void all_returnsAllInstancesOfCustomers_true() {
+         Customer myCustomer1 = new Customer("Grace");
+         Customer myCustomer2 = new Customer("Njoroge");
+         assertEquals(true, Customer.all().contains(myCustomer1));
+         assertEquals(true, Customer.all().contains(myCustomer2));
+       }
+
+       
     
     @After
     //This method Clears down the database tables
@@ -33,14 +43,6 @@ public class CustomerTest{
         String sql = "DELETE FROM customers *;";
         con.createQuery(sql).executeUpdate();
       }
-    }
-
-    @Test
-    public void all_returnsAllInstancesOfCustomers_true() {
-      Customer myCustomer1 = new CUstomer("Grace");
-      Customer myCustomer2 = new CUstomer("Njoroge");
-      assertEquals(true, Customer.all().contains(myCustomer1));
-      assertEquals(true, Customer.all().contains(myCustomer2));
     }
 
 }

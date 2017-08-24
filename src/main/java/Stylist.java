@@ -38,6 +38,7 @@ public class Stylist{
       public List<Customer> getCustomers() {
         return myCustomers;
       }
+      //THis is a method to Add the customers to the stylist
       public void addCustomers(Customer customer) {
         myCustomers.add(customer);
       }

@@ -18,5 +18,9 @@ public class Stylist{
     public static List<Stylist> all() {
         return instances;
       }
+      //This method clears all the stylists in a list
+      public static void clear() {
+        instances.clear();
+      }
 
 }

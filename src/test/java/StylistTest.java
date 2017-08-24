@@ -33,6 +33,14 @@ public class StylistTest {
     assertEquals(true, Stylist.all().contains(myStylist2));
   }
 
+  //This test is for emptying the list
+  @Test
+  public void clear_emptiesAllStylistsFromList_0() {
+    Stylist myStylist1 = new Stylist("Daisy");
+    Stylist.clear();
+    assertEquals(Stylist.all().size(), 0);
+  }
+
   @After
   //This method Clears down the database tables
   public void tearDown() {

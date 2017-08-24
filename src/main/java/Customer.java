@@ -27,6 +27,10 @@ public class Customer{
     public int getId(){
         return mId;
     }
+    //Here the Specific Customer is looked for with a specific id
+    public static Customer find(int id) {
+        return instances.get(id - 1);
+      }
     //Create the  List method that gets all of the customers  from the customers class
     public static List<Customer> all(){
         return instances;

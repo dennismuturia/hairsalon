@@ -47,6 +47,14 @@ public class CustomerTest{
          Customer myCustomer = new Customer("Grace");
          assertEquals(1, myCustomer.getId());
        }
+
+       //Check whether individual Customers will be given Id. This applies to the second customer
+       @Test
+       public void find_returnsCustomerWithSameId_secondCustomer() {
+         Customer myCustomer1 = new Customer("Grace");
+         Customer myCustomer2 = new Customer("Njoroge");
+         assertEquals(Customer.find(myCustomer2.getId()), myCustomer2);
+       }
     
     @After
     //This method Clears down the database tables

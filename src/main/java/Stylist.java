@@ -5,4 +5,8 @@ public class Stylist{
     public Stylist(String name){
         mName =  name;
     }
+     //We add a getName method for getting the private class parameter to be accessible
+    public String getName(){
+        return mName;
+    }
 }

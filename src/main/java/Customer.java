@@ -15,6 +15,11 @@ public class Customer{
     public String getName(){
         return mName;
     }
+
+    //Clearance of a list
+    public static void clear(){
+        instances.clear();
+    }
     //Create the  List method that gets all of the customers  from the customers class
     public static List<Customer> all(){
         return instances;

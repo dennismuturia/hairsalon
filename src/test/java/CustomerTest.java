@@ -61,14 +61,14 @@ public class CustomerTest{
       Customer myCustomer2 = new Customer("Kim");
       assertTrue(myCustomer1.equals(myCustomer2));
     }
-
-    //Lets save new objects to our database
+    //Why dont we save a new object? Here is the code.
     @Test
     public void save_returnsTrueIfNamesAretheSame() {
     Customer myCustomer = new Customer("Grace");
       myCustomer.save();
       assertTrue(Customer.all().get(0).equals(myCustomer));
     }
+
 
     @After
     //This method Clears down the database tables

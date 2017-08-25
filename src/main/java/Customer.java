@@ -39,7 +39,6 @@ public class Customer{
         }
       }
 
-      //Save method
       public void save() {
         try(Connection con = DB.sql2o.open()) {
           String sql = "INSERT INTO customers (name) VALUES (:name)";

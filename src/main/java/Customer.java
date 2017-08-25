@@ -90,6 +90,15 @@ public class Customer{
             .executeUpdate();
         }
       }
+      //Lets delete some stuff
+      public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+        String sql = "DELETE FROM customers WHERE id = :id;";
+        con.createQuery(sql)
+          .addParameter("id", id)
+          .executeUpdate();
+        }
+      }
 
 
 }

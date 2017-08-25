@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import org.sql2o.*;
 
 public class Customer{
     //Create some class variables
@@ -24,5 +25,12 @@ public class Customer{
     public static Customer find(int id) {
         
       }
+    //Here we will be using the all so that it may store all our data and push them to our database
+    public static List<Customer> all(){
+        String sql = "SELECT id, name FROM customers";
+        try(Connection con = DB.sql2o.open()){
+            return con.createQuery(sql).executeAndFetch(Customer.class);
+        }
+    }
 
 }

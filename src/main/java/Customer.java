@@ -22,8 +22,31 @@ public class Customer{
         return id;
     }
     //Here the Specific Customer is looked for with a specific id
+    /*
     public static Customer find(int id) {
         
+      }
+      */
+
+      //Create an overrride that will override our equals
+      @Override
+      public boolean equals(Object otherCustomer) {
+        if (!(otherCustomer instanceof Customer)) {
+          return false;
+        } else {
+          Customer myCustomer = (Customer) otherCustomer;
+          return this.getName().equals(myCustomer.getName());
+        }
+      }
+
+      //Save method
+      public void save() {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "INSERT INTO customers (name) VALUES (:name)";
+          con.createQuery(sql)
+            .addParameter("name", this.name)
+            .executeUpdate();
+        }
       }
     //Here we will be using the all so that it may store all our data and push them to our database
     public static List<Customer> all(){

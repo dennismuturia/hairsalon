@@ -28,27 +28,48 @@ public class CustomerTest{
        @Test
        public void all_returnsAllInstancesOfCustomers_true() {
          Customer myCustomer1 = new Customer("Grace");
+         myCustomer1.save();
          Customer myCustomer2 = new Customer("Njoroge");
-         assertEquals(true, Customer.all().contains(myCustomer1));
-         assertEquals(true, Customer.all().contains(myCustomer2));
+         myCustomer2.save();
+         assertEquals(true, Customer.all().get(0).equals(myCustomer1));
+         assertEquals(true, Customer.all().get(1).equals(myCustomer2));
        }
 
        //This Test will be used to assign ids to the individual Customer
+       /*
        @Test
        public void getId_customersInstantiateWithAnID_1() {
          Customer.clear();  // Remember, the test will fail without this line! We need to empty leftover Tasks from previous tests!
          Customer myCustomer = new Customer("Grace");
          assertEquals(1, myCustomer.getId());
        }
+       */
 
        //Check whether individual Customers will be given Id. This applies to the second customer
+       /*
        @Test
        public void find_returnsCustomerWithSameId_secondCustomer() {
          Customer myCustomer1 = new Customer("Grace");
          Customer myCustomer2 = new Customer("Njoroge");
          assertEquals(Customer.find(myCustomer2.getId()), myCustomer2);
        }
-    
+       */
+    //Here we are going to create a test that will override the equals
+    @Test
+    public void equals_returnsTrueIfNamesAretheSame() {
+      Customer myCustomer1 = new Customer("Grace");
+      Customer myCustomer2 = new Customer("Kim");
+      assertTrue(myCustomer1.equals(myCustomer2));
+    }
+
+    //Lets save new objects to our database
+    @Test
+    public void save_returnsTrueIfNamesAretheSame() {
+    Customer myCustomer = new Customer("Grace");
+      myCustomer.save();
+      assertTrue(Customer.all().get(0).equals(myCustomer));
+    }
+
     @After
     //This method Clears down the database tables
     public void tearDown() {

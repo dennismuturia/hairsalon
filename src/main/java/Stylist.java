@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import org.sql2o.*;
+
 public class Stylist{
     //Initialize all your Class Variables
     private String name;
@@ -27,10 +28,11 @@ public class Stylist{
         return customer_id;
     }
 
+
     //This stores all the users in a list
     
     public static List<Stylist> all() {
-        String sql = "SELECT id, name, phone, styles_id, customer_id FROM categories";
+        String sql = "SELECT id, name, phone, styles_id, customer_id FROM stylist";
         try(Connection con = DB.sql2o.open()) {
           return con.createQuery(sql).executeAndFetch(Stylist.class);
         }
@@ -67,14 +69,22 @@ public class Stylist{
     //This will save our to our table
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-          String sql = "INSERT INTO stylist (name, phone, style_id, customer_id) VALUES (:name, :phone, :style_id, :customer_id)";
+          String sql = "INSERT INTO stylist (name, phone, styles_id, customer_id) VALUES (:name, :phone, :styles_id, :customer_id)";
           this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
             .addParameter("phone", this.phone)
-            .addParameter("style_id", this.styles_id)
+            .addParameter("styles_id", this.styles_id)
             .addParameter("customer_id", this.customer_id)
             .executeUpdate()
             .getKey();
+        }
+      }
+      public List<Customer> getCustomers() {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "SELECT * FROM customers WHERE stylistId=:id";
+          return con.createQuery(sql)
+            .addParameter("id", this.id)
+            .executeAndFetch(Customer.class);
         }
       }
       //Finds the specific ID

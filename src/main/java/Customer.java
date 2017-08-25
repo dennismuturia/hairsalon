@@ -8,14 +8,21 @@ public class Customer{
     private int id;
     private String phone;
     private int styles;
+    private int stylistId;
 
 //We create the Customer method where the name string will be passed
-    public Customer(String name, String phone, int styles){
+    public Customer(String name, String phone, int styles, int stylistId){
         this.name = name;
+        this.stylistId = stylistId;
     }
     //We add a getName method for getting the private class parameter to be accessible
     public String getName(){
         return name;
+    }
+
+    //New id that will return the stylist id
+    public int getStylistId(){
+        return stylistId;
     }
     public String getPhone(){
         return phone;
@@ -49,27 +56,30 @@ public class Customer{
         } else {
           Customer myCustomer = (Customer) otherCustomer;
           return this.getName().equals(myCustomer.getName()) &&
-          this.getId() == myCustomer.getId();
+          this.getId() == myCustomer.getId()&&
+          this.getStylistId() == myCustomer.getStylistId();
         }
       }
 
       public void save() {
         try(Connection con = DB.sql2o.open()) {
-          String sql = "INSERT INTO customers (name, phone ,styles) VALUES (:name, :phone, :styles)";
+          String sql = "INSERT INTO customers (name, phone ,styles,stylistId) VALUES (:name, :phone, :styles, :stylistId)";
           this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
             .addParameter("phone", this.phone)
             .addParameter("styles", this.styles)
+            .addParameter("stylistId", this.stylistId)
             .executeUpdate()
             .getKey();
         }
       }
     //Here we will be using the all so that it may store all our data and push them to our database
     public static List<Customer> all(){
-        String sql = "SELECT id, name, phone, styles FROM customers";
+        String sql = "SELECT id, name, phone, styles, stylistId FROM customers";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(Customer.class);
         }
     }
+
 
 }

@@ -13,22 +13,35 @@ public class CustomerTest{
     @Test
     //This Method will now check if the customer class will instantiates as expected
     public void CheckWhethertheClassInstantiatesCorrectly(){
-        Customer myCustomer = new Customer("Grace", "075675765", 1);
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+        Customer myCustomer = new Customer("Grace", "075675765", 1 , myStylist.getId());
         assertEquals(true, myCustomer instanceof Customer);
     }
 
+    //Trying to save a stylist in the customers
+    @Test
+    public void save_savesStylistIdIntoDB_true() {
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+      myStylist.save();
+      Customer myCustomer = new Customer("Grace", "075675765",1 , myStylist.getId());
+      myCustomer.save();
+      Customer savedCustomer = Customer.find(myCustomer.getId());
+      assertEquals(savedCustomer.getStylistId(), myStylist.getId());
+    }
     @Test
     //Since we have initialized the string in the Customer class, We check if it will instantiates with it
     public void CheckWhethertheClassInstantiatesWithStringCorrectly(){
-        Customer myCustomer = new Customer("Grace","075675765", 1);
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+        Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
         assertEquals("Grace", myCustomer.getName());
     }
        //This test checks whether all the instances of the Customer class passes
        @Test
        public void all_returnsAllInstancesOfCustomers_true() {
-         Customer myCustomer1 = new Customer("Grace","075675765", 1);
+        Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+         Customer myCustomer1 = new Customer("Grace","075675765", 1 , myStylist.getId());
          myCustomer1.save();
-         Customer myCustomer2 = new Customer("Graceyyy","075675765", 1);
+         Customer myCustomer2 = new Customer("Graceyyy","075675765", 1 , myStylist.getId());
          myCustomer2.save();
          assertEquals(true, Customer.all().get(0).equals(myCustomer1));
          assertEquals(true, Customer.all().get(1).equals(myCustomer2));
@@ -36,7 +49,8 @@ public class CustomerTest{
        //This Test will be used to assign ids to the individual Customer
        @Test
        public void getId_CustomerInstantiateWithAnID() {
-        Customer myCustomer = new Customer("Grace","075675765", 1);
+        Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+        Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
          myCustomer.save();
          assertTrue(myCustomer.getId() > 0);
        }
@@ -55,9 +69,10 @@ public class CustomerTest{
        
        @Test
        public void find_returnsCustomerWithSameId_secondCustomer() {
-         Customer myCustomer1 = new Customer("Grace","075675765", 1);
+        Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+         Customer myCustomer1 = new Customer("Grace","075675765", 1 , myStylist.getId());
          myCustomer1.save();
-         Customer myCustomer2 = new Customer("Njoroge","075675765", 1);
+         Customer myCustomer2 = new Customer("Njoroge","075675765", 1 , myStylist.getId());
          myCustomer2.save();
          assertEquals(Customer.find(myCustomer2.getId()).getName(), myCustomer2.getName());
          assertEquals(Customer.find(myCustomer1.getId()).getName(), myCustomer1.getName());
@@ -65,21 +80,24 @@ public class CustomerTest{
     //Here we are going to create a test that will override the equals
     @Test
     public void equals_returnsTrueIfNamesAretheSame() {
-      Customer myCustomer1 = new Customer("Grace","075675765", 1);
-      Customer myCustomer2 = new Customer("Grace","075675765", 1);
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+      Customer myCustomer1 = new Customer("Grace","075675765", 1 , myStylist.getId());
+      Customer myCustomer2 = new Customer("Grace","075675765", 1 , myStylist.getId());
       assertTrue(myCustomer1.equals(myCustomer1));
     }
     //Why dont we save a new object? Here is the code.
     @Test
     public void save_returnsTrueIfNamesAretheSame() {
-    Customer myCustomer = new Customer("Grace","075675765", 1);
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+    Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
       myCustomer.save();
       assertTrue(Customer.all().get(0).equals(myCustomer));
     }
     //Lets Assign new id which are  unique
     @Test
     public void save_assignsIdToObject() {
-    Customer myCustomer = new Customer("Grace","075675765", 1);
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+    Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
       myCustomer.save();
       Customer savedCustomer = Customer.all().get(0);
       assertEquals(myCustomer.getId(), savedCustomer.getId());

@@ -88,23 +88,6 @@ public class StylistTest {
       myStylist2.save();
       assertEquals(Stylist.find(myStylist2.getId()), myStylist2);;
     }
-    //Lets connect the Stylists to the customers
-    /*
-    @Test
-    public void getCustomers_initiallyReturnsEmptyList_ArrayList() {
-      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-      assertEquals(0, myStylist.getCustomer().size());
-    }
-
-    //Add customer to Stylist
-    @Test
-    public void addCustomer_addsCustomerToList_true() {
-      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-      Customer myCustomer = new Customer("Grace","075675765", 1, myStylist.getId());
-      myStylist.addCustomers(myCustomer);
-      assertTrue(myStylist.getCustomer().contains(myCustomer));
-    }
-*/
     //This is an equals statement
     @Test
     public void equals_returnsTrueIfNamesAretheSame() {

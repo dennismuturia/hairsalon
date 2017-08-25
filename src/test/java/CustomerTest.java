@@ -56,14 +56,6 @@ public class CustomerTest{
        }
 
        
-       /*
-       @Test
-       public void getId_customersInstantiateWithAnID_1() {
-         Customer.clear();  // Remember, the test will fail without this line! We need to empty leftover Tasks from previous tests!
-         Customer myCustomer = new Customer("Grace");
-         assertEquals(1, myCustomer.getId());
-       }
-       */
 
        //Check whether individual Customers will be given Id. This applies to the second customer
        

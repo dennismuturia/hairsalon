@@ -87,16 +87,7 @@ public class Stylist{
             .executeAndFetch(Customer.class);
         }
       }
-      //Finds the specific ID
-      /*
-      public static Stylist find(int id) {
-      }
-      */
-      //This connects the Customers to the Stylist
-      /*
-      public List<Customer> getCustomers() {
 
-      }
       */
 
 }

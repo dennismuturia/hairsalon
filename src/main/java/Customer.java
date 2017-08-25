@@ -3,36 +3,26 @@ import java.util.ArrayList;
 
 public class Customer{
     //Create some class variables
-    private String mName;
-    private static List<Customer> instances = new ArrayList<Customer>();
-    private int mId;
+    private String name;
+    private int id;
 
 //We create the Customer method where the name string will be passed
     public Customer(String name){
-        mName = name;
-        instances.add(this);
-        mId = instances.size();
+        this.name = name;
     }
     //We add a getName method for getting the private class parameter to be accessible
     public String getName(){
-        return mName;
+        return name;
     }
 
-    //Clearance of a list
-    public static void clear(){
-        instances.clear();
-    }
 
     //Lets get the id
     public int getId(){
-        return mId;
+        return id;
     }
     //Here the Specific Customer is looked for with a specific id
     public static Customer find(int id) {
-        return instances.get(id - 1);
+        
       }
-    //Create the  List method that gets all of the customers  from the customers class
-    public static List<Customer> all(){
-        return instances;
-    }
+
 }

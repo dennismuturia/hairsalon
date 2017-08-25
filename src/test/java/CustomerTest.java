@@ -15,7 +15,7 @@ public class CustomerTest{
     public void CheckWhethertheClassInstantiatesCorrectly(){
         Customer myCustomer = new Customer("Grace", "075675765", 1);
         assertEquals(true, myCustomer instanceof Customer);
-    }stylist
+    }
 
     @Test
     //Since we have initialized the string in the Customer class, We check if it will instantiates with it

@@ -89,10 +89,19 @@ public class CustomerTest{
     @Test
     public void save_assignsIdToObject() {
       Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-    Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
+      Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
       myCustomer.save();
       Customer savedCustomer = Customer.all().get(0);
       assertEquals(myCustomer.getId(), savedCustomer.getId());
+    }
+    //Now lets update data to our app
+    @Test
+    public void update_updatesTaskDescription_true() {
+      Stylist myStylist = new Stylist("Daisy","87678687",1,1);
+      Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
+      myCustomer.save();
+      myCustomer.update("Milcah");
+      assertEquals("Milcah", Customer.find(myCustomer.getId()).getName());
     }
 
     @After

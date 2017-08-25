@@ -41,27 +41,40 @@ public class Stylist{
           return id;
       }
 
-          //Create an override here in the stylist section
-    @Override
-    public boolean equals(Object otherStylist) {
-      if (!(otherStylist instanceof Stylist)) {
-        return false;
-      } else {
-        Stylist newStylist = (Stylist) otherStylist;
-        return this.getName().equals(newStylist.getName());
+      //Find method
+      public static Stylist find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "SELECT * FROM stylist where id=:id";
+          Stylist myStylist = con.createQuery(sql)
+            .addParameter("id", id)
+            .executeAndFetchFirst(Stylist.class);
+          return myStylist;
+        }
       }
-    }
+
+          //Create an override here in the stylist section
+          @Override
+          public boolean equals(Object otherStylist) {
+            if (!(otherStylist instanceof Stylist) ){
+              return false;
+            } else {
+              Stylist newStylist= (Stylist) otherStylist;
+              return this.getName().equals(newStylist.getName()) &&
+                     this.getId() == newStylist.getId();
+            }
+          }
 
     //This will save our to our table
     public void save() {
         try(Connection con = DB.sql2o.open()) {
           String sql = "INSERT INTO stylist (name, phone, style_id, customer_id) VALUES (:name, :phone, :style_id, :customer_id)";
-          con.createQuery(sql)
+          this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
             .addParameter("phone", this.phone)
             .addParameter("style_id", this.styles_id)
             .addParameter("customer_id", this.customer_id)
-            .executeUpdate();
+            .executeUpdate()
+            .getKey();
         }
       }
       //Finds the specific ID

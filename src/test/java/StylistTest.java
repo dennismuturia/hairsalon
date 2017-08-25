@@ -45,7 +45,8 @@ public class StylistTest {
     @Test
     public void getId_StylistInstantiateWithAnId_1() {
         Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-        assertEquals(1, myStylist.getId());
+        myStylist.save();
+        assertTrue(myStylist.getId() > 0);
     }
 
     //This returns objects with the same id as with the db
@@ -67,14 +68,16 @@ public class StylistTest {
     @Test
     public void find_returnsStylistWithSameId_secondStylist() {
       Stylist myStylist1 = new Stylist("Daisy","87678687",1,1);
+      myStylist1.save();
       Stylist myStylist2 = new Stylist("Daisy","87678687",1,1);
+      myStylist2.save();
       assertEquals(Stylist.find(myStylist2.getId()), myStylist2);
     }
     //Lets connect the Stylists to the customers
     @Test
     public void getCustomers_initiallyReturnsEmptyList_ArrayList() {
       Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-      assertEquals(0, myStylist.getCustomers().size());
+      assertEquals(0, myStylist.getCustomer().size());
     }
 
     //Add customer to Stylist

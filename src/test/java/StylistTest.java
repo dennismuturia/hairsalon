@@ -75,7 +75,7 @@ public class StylistTest {
     @Test
     public void addCustomer_addsCustomerToList_true() {
       Stylist myStylist = new Stylist("Daisy");
-      Customer myCustomer = new Customer("Grace");
+      Customer myCustomer = new Customer("Grace","075675765", 1);
       myStylist.addCustomers(myCustomer);
       assertTrue(myStylist.getCustomers().contains(myCustomer));
     }
@@ -83,7 +83,7 @@ public class StylistTest {
   @After
   //This method Clears down the database tables
   public void tearDown() {
-      
+
       //Here we run the try exemption to try and connect to the database 
     try(Connection con = DB.sql2o.open()) {
       String sql = "DELETE FROM stylist *;";

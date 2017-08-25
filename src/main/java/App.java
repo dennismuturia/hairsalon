@@ -8,9 +8,10 @@ import static spark.Spark.*;
 public class App{
     //this is the method or the main method where the templates will be rendered at
      public static void main(String[] args) {
+         //Initialize the variables that i will use
         staticFileLocation("/public");
         String layout = "templates/layout.vtl";
-    
+    //This is the index homepage or the home directory
         get("/", (request, response) -> {
           Map<String, Object> model = new HashMap<String, Object>();
           model.put("template", "templates/index.vtl");

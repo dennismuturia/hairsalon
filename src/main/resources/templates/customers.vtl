@@ -1,0 +1,13 @@
+<h1>Lists of all Customers!</h1>
+
+#if ($customers)
+  <ul>
+    #foreach ($customer in $customers)
+      <li><a href="/customers/$customer.getId()">$customer.getName()</a></li>
+    #end
+  </ul>
+#else
+  <p>No Customers!</p>
+#end
+
+<a href="/customers/new">Add New customer</a>

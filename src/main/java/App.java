@@ -17,6 +17,33 @@ public class App{
           model.put("template", "templates/index.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
+        //This is a new route for customers
+        get("/customers", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("customers", Customer.all());
+            model.put("template", "templates/customers.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+          get("stylist/:id/customer/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+            model.put("stylist", stylist);
+            model.put("template", "templates/stylist-customer-form.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+          //This is a method for posting data from the customers section
+          post("/customers", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
+            String name = request.queryParams("name");
+            Customer myCustomer = new Customer(name,"09867687",78678, stylist.getId());
+            myCustomer.save();
+            model.put("stylist", stylist);
+            model.put("template", "templates/stylist-customer-success.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
         
     }
 }

@@ -25,7 +25,7 @@ public class App{
             model.put("template", "templates/customers.vtl");
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
-
+          //This will render the form that assigns a customer to a Stylist
           get("stylist/:id/customer/new", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
@@ -42,6 +42,21 @@ public class App{
             myCustomer.save();
             model.put("stylist", stylist);
             model.put("template", "templates/stylist-customer-success.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+        //This is suppossed to show us the individual customer that is existing in a database
+          get("/customers/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Customer customer = Customer.find(Integer.parseInt(request.params(":id")));
+            model.put("customer", customer);
+            model.put("template", "templates/customer.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+          //This renders all of our stylists
+          get("/stylists/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "templates/stylist-form.vtl");
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
         

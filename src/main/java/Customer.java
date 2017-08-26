@@ -75,7 +75,7 @@ public class Customer{
       }
     //Here we will be using the all so that it may store all our data and push them to our database
     public static List<Customer> all(){
-        String sql = "SELECT id, name, phone, styles, stylistId FROM customers";
+        String sql = "SELECT * FROM customers";
         try(Connection con = DB.sql2o.open()){
             return con.createQuery(sql).executeAndFetch(Customer.class);
         }

@@ -12,8 +12,8 @@
     Ensure that you have psql to run this app.
     ### How to install
         Run the following commands
-            ```sudo apt-get update```
-            ```sudo apt-get install postgresql postgresql-contrib```
+            `sudo apt-get update`
+            `sudo apt-get install postgresql postgresql-contrib`
 
 ## Technology Used
     Spark
@@ -23,5 +23,6 @@
 ## Author
     Dennis Muturia
 
-##Licence
+## Licence 
+
     [MIT licence](license)

@@ -81,7 +81,7 @@ public class CustomerTest{
     @Test
     public void save_returnsTrueIfNamesAretheSame() {
       Stylist myStylist = new Stylist("Daisy","87678687",1,1);
-    Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
+      Customer myCustomer = new Customer("Grace","075675765", 1 , myStylist.getId());
       myCustomer.save();
       assertTrue(Customer.all().get(0).equals(myCustomer));
     }

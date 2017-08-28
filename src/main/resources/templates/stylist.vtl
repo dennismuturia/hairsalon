@@ -1,0 +1,10 @@
+<h1>$stylist.getName() customers:</h1>
+
+<ul>
+  #foreach($customer in $stylist.getTasks())
+   <li><a href="/stylists/$stylist.getId()/customers/$customer.getId()">$task.getDescription()</a></li>
+  #end
+</ul>
+
+<a href="/stylists/$stylist.getId()/customers/new">Add a new task</a>
+<a href="/stylists">All categories</a>

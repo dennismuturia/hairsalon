@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.ArrayList;
 import org.sql2o.*;
 
 public class Stylist{
@@ -13,6 +12,9 @@ public class Stylist{
     //This method will be efficient when you want to instantiate the class name
     public Stylist(String name, String phone, int styles_id, int customer_id){
         this.name =  name;
+        this.phone = phone;
+        this.styles_id = styles_id;
+        this.customer_id = customer_id; 
     }
      //We add a getName method for getting the private class parameter to be accessible
     public String getName(){

@@ -81,8 +81,8 @@ public class App{
             Map<String, Object> model = new HashMap<String, Object>();
             String name = request.queryParams("name");
             String phone = request.queryParams("phone");
-            int styles = Integer.parseInt(request.queryParams("styles_id"));
-            int customers = Integer.parseInt(request.queryParams("customer_id"));
+            int styles = Integer.parseInt(request.queryParams("styles"));
+            int customers = Integer.parseInt(request.queryParams("Customer"));
             Stylist newStylist = new Stylist(name, phone,styles,customers);
             newStylist.save();
             model.put("template", "templates/stylist-success.vtl");
@@ -106,7 +106,7 @@ public class App{
             model.put("template", "templates/stylist.vtl");
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
-          
+
           ProcessBuilder process = new ProcessBuilder();
           Integer port;
           if (process.environment().get("PORT") != null) {

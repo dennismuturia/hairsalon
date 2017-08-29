@@ -34,6 +34,7 @@ public class App{
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
           //This is a method for posting data from the customers section
+          /*
           post("/customers", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
@@ -46,7 +47,7 @@ public class App{
             model.put("template", "templates/stylist-customer-success.vtl");
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
-
+          */
           post("/stylists/:stylists_id/customers/:id", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             Customer customer = Customer.find(Integer.parseInt(request.params("id")));
@@ -76,6 +77,23 @@ public class App{
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
 
+          get("/customers/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "templates/customers-form.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+          post("/customers", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String name = request.queryParams("name");
+            String phone = request.queryParams("phone");
+            int styles = Integer.parseInt(request.queryParams("styles"));
+            int stylelist_id = Integer.parseInt(request.queryParams("stylelist_id"));
+            Customer newCustomer = new Customer(name, phone,styles,stylelist_id);
+            newCustomer.save();
+            model.put("template", "templates/customer-success.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
 
           post("/stylists", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
